@@ -1,7 +1,18 @@
 # city_explorer_api
+https://git.heroku.com/protected-sea-51750.git
 
-**Author**: John Ramirez
+**Author**: Leon Jukelis (John Ramirez)
 **Version**: 1.0.0 (increment the patch/fix version number if you make more commits past your first submission)
+
+Number and name of feature: City Explorer API V-1.0 setup
+
+Estimate of time needed to complete: 1hr
+
+Start time: 1847 (12/23/20)
+
+Finish time: 1943 (12/23/20)
+
+Actual time needed to complete: 56mins
 
 ## Overview
 <!-- Provide a high level overview of what this application is and why you are building it, beyond the fact that it's an assignment for this class. (i.e. What's your problem domain?) -->
@@ -19,4 +30,14 @@
 
 ## Credits and Collaborations
 <!-- Give credit (and a link) to other people or resources that helped you build this application. -->
--->
+
+
+Number and name of feature: V-1.1: Locations
+
+Estimate of time needed to complete: 45mins
+
+Start time: 
+
+Finish time: 
+
+Actual time needed to complete: 
