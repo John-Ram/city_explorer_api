@@ -1,5 +1,5 @@
 # city_explorer_api
-https://git.heroku.com/protected-sea-51750.git
+https://protected-sea-51750.herokuapp.com
 
 **Author**: Leon Jukelis (John Ramirez)
 **Version**: 1.0.0 (increment the patch/fix version number if you make more commits past your first submission)
