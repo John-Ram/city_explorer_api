@@ -7,14 +7,21 @@ require('dotenv').config();
 const cors = require('cors');
 const {response, request} = require('express');
 const superagent = require('superagent');
+const pg = require('pg');
 
 // global variables
 
 const PORT = process.env.PORT || 3000;
-GEOCODE_API_KEY = process.env.GEOCODE_API_KEY;
-WEATHER_API_KEY = process.env.WEATHER_API_KEY;
+const GEOCODE_API_KEY = process.env.GEOCODE_API_KEY;
+const WEATHER_API_KEY = process.env.WEATHER_API_KEY;
+const DATABASE_URL = process.env.DATABASE_URL;
 const app = express();
+
+// express configs
+
 app.use(cors());
+const client = new pg.Client(DATABASE_URL);
+client.on('error',(error) => console.error(error));
 
 // routes 
 
@@ -29,6 +36,10 @@ app.get('/location', (request, response ) =>{
     
       res.send(builtLocation);
     })
+    .catch(error => {
+      console.log(error);
+      res.status(500).send(error.message);
+    })
 });
 
 app.get('/weather', (req, res) => {
@@ -40,6 +51,10 @@ app.get('/weather', (req, res) => {
     .then(resFromSuperagent => {
       const jsonData = resFromSuperagent.body;
       res.send(jsonData.data.map(forecast => new Weather(forecast)));
+    })
+    .catch(error => {
+      console.log(error);
+      res.status(500).send(error.message);
     })
 });
 
@@ -58,5 +73,7 @@ function Weather(forecastObj) {
 }
 
 // server port 
-
-app.listen(PORT, () => console.log(`you're being served port : ${PORT} a good vintage.`));
+client.connect()
+  .then(() => {
+    app.listen(PORT, () => console.log(`you're being served port : ${PORT} a good vintage.`));
+});
