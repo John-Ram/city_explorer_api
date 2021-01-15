@@ -21,12 +21,12 @@ const app = express();
 
 app.use(cors());
 const client = new pg.Client(DATABASE_URL);
-client.on('error',(error) => console.error(error));
+client.on('error',(error) => console.error('db error', error));
 
 // routes 
 
 app.get('/location', (request, response ) =>{
-  const cityQuery = req.query.city;
+  const cityQuery = request.query.city;
   const urlToSearch = `https://us1.locationiq.com/v1/search.php?key=${GEOCODE_API_KEY}&q=${cityQuery}&format=json`;
 
   superagent.get(urlToSearch)
@@ -34,11 +34,11 @@ app.get('/location', (request, response ) =>{
       const jsonData = resFromSuperagent.body;
       const builtLocation = new Location(jsonData, cityQuery);
     
-      res.send(builtLocation);
+      response.send(builtLocation);
     })
     .catch(error => {
       console.log(error);
-      res.status(500).send(error.message);
+      response.status(500).send(error.message);
     })
 });
 
@@ -72,8 +72,8 @@ function Weather(forecastObj) {
   this.time = forecastObj.valid_date;
 }
 
-// server port 
-client.connect()
-  .then(() => {
+// server PORT 
+// client.connect()
+//   .then(() => {
     app.listen(PORT, () => console.log(`you're being served port : ${PORT} a good vintage.`));
-});
+// });
