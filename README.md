@@ -1,11 +1,11 @@
 # city_explorer_api
 https://protected-sea-51750.herokuapp.com
-https://protected-sea-51750.herokuapp.com/
 
+# city_explorer front_end
 https://codefellows.github.io/code-301-guide/curriculum/city-explorer-app/front-end/
 
 **Author**: Leon Jukelis (John Ramirez)
-**Version**: 1.2.1 
+**Version**: 1.3.0 
 
 Number and name of feature: City Explorer API V-1.0 setup
 
@@ -34,9 +34,8 @@ https://trello.com/b/y9NGMkqm/labs-6-9
 -Tools and frameworks: Node.js, Heroku, PostgreSQL
 
 ## Change Log
-<!-- Use this area to document the iterative changes made to your application as each feature is successfully implemented. Use time stamps. Here's an examples:
 
-01-01-2001 4:59pm - Application now has a fully-functional express server, with a GET route for the location resource. -->
+---
 
 **01-05-2021 11:35**: Location API connection successful, Test performed with console log to confirm connection, result: success.
 
@@ -50,6 +49,8 @@ Finish time: 11:35
 
 Actual time needed to complete: 19mins
 
+---
+
 **01-05-2021 11:48**: Weather API connection successful, Test performed with console log to confirm connection, result: success.
 
 Number and name of feature: V-1.2: Weather
@@ -62,7 +63,19 @@ Finish time: 11:48
 
 Actual time needed to complete: 10mins
 
+---
 
+Number and name of feature: 
+
+Estimate of time needed to complete: 
+
+Start time: 
+
+Finish time: 
+
+Actual time needed to complete: 
+
+---
 
 Number and name of feature: 
 
