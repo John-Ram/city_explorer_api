@@ -64,16 +64,17 @@ Finish time: 11:48
 Actual time needed to complete: 10mins
 
 ---
+**01-21-2021 2214: Finishing of City explorer. addition of movie and yelp api successful, mod note: city query causing major lag and will not return results. second note: client.connect will not work as result, after help from 2 TAs it was decided to tur in product as is for partial credit and make writing and SQl query a point of focus in studies. 
 
-Number and name of feature: 
+Number and name of feature: V-1.2: final product
 
-Estimate of time needed to complete: 
+Estimate of time needed to complete: 2hrs
 
-Start time: 
+Start time: 1630
 
-Finish time: 
+Finish time: 2214
 
-Actual time needed to complete: 
+Actual time needed to complete: 6hrs 44mins
 
 ---
 
