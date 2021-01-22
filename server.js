@@ -7,7 +7,7 @@ require('dotenv').config();
 const cors = require('cors');
 const superagent = require('superagent');
 const pg = require('pg');
-const { response } = require('express');
+const {response, request} = require('express');
 
 // global variables
 
@@ -18,6 +18,7 @@ const DATABASE_URL = process.env.DATABASE_URL;
 const MOVIE_API_KEY = process.env.MOVIE_API_KEY;
 const YELP_API_KEY = process.env.YELP_API_KEY;
 const app = express();
+
 
 // express configs
 
@@ -32,27 +33,29 @@ app.get('/movies', getMovies);
 app.get('/yelp', getYelp);
 
 function getLocation(request, response ) {
+  console.log('get location');
+  console.log(request.query.city);
   const cityQuery = request.query.city;
-  client.query(`SELECT * FROM locations WHERE search_query = '${cityQuery}'`)
-    .then(resultFromSql => {
-      if (resultFromSql.rowCount) {
-        console.log(`found city: ${cityQuery} ... responding with DB location`);
-        response.send(resultFromSql.rows[0]);
-      } else {
-        console.log(`city <${cityQuery}> not found in DB`);
-        const urlToSearch = `http://us1.locationiq.com/v1/search.php?key=${GEOCODE_API_KEY}&q=${cityQuery}&format=json`;
+  // client.query(`SELECT * FROM locations WHERE search_query=${cityQuery};`)
+  //   .then(resultFromSql => {
+  //     if (resultFromSql.rowCount) {
+  //       console.log(`found city: ${cityQuery} ... responding with DB location`);
+  //       response.status(200).send(resultFromSql.rows[0]);
+  //     } else {
+  //       console.log(`city <${cityQuery}> not found in DB`);
+        const urlToSearch = `https://us1.locationiq.com/v1/search.php?key=${GEOCODE_API_KEY}&q=${cityQuery}&format=json&limit=1`;
 
   superagent.get(urlToSearch)
     .then(resFromSuperagent => {
       console.log('retrieved location from API, sending to client and caching in DB');
       const jsonData = resFromSuperagent.body;
       response.send(new Location(jsonData, cityQuery));
-      const insertQuery = `INSERT INTO locations (search_query, formatted_query, latitude, longitude) VALUES ($1, $2, $3, $4)`;
+      const insertQuery = `INSERT INTO locations (search_query, formatted_query, latitude, longitude) VALUES ($1, $2, $3, $4);`;
             const valueArray = [cityQuery, jsonData[0].display_name, jsonData[0].lat, jsonData[0].lon];
             client.query(insertQuery, valueArray);
     })
-  }
-})
+//   }
+// })
   .catch(error => errorHandler(error, response));
 }
 
@@ -138,4 +141,4 @@ const errorHandler = (error, response) => {
 // client.connect()
 //   .then(() => {
     app.listen(PORT, () => console.log(`you're being served port : ${PORT} a good vintage.`));
-// });
+// }).catch(error => console.log('!!!!!!!!!!!!!!!!!!!!!!!!', error));
